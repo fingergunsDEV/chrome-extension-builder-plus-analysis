@@ -1,0 +1,24 @@
+/* Fix the editor-container to use consistent flex layout */
+.editor-container {
+  flex: 1;
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+  background: white;
+  box-shadow: var(--box-shadow);
+  border-radius: var(--border-radius);
+  margin: 20px;
+  animation: fadeIn 0.4s ease-out;
+  overflow: hidden;
+}
+
+/* Update media queries for better responsive behavior */
+@media (max-width: 1000px) {
+  .editor-container {
+    flex-direction: column;
+  }
+  
+  .preview-pane, .editor-pane {
+    width: 100%;
+  }
+}
