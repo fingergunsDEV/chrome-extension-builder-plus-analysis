@@ -1,15 +1,13 @@
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Chrome Extension Builder</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-    integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" 
+    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" 
     crossorigin="anonymous" referrerpolicy="no-referrer" />
   <style>
-    /* Modern and Sophisticated CSS for Chrome Extension Builder with Grid Layout */
-    /* Root Variables */
     :root {
       --primary-color: #4a6cf7;
       --primary-hover: #3a5de6;
@@ -20,23 +18,9 @@
       --text-light: #f8f9fa;
       --border-radius: 8px;
       --transition-speed: 0.3s;
-      --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      --box-shadow-hover: 0 8px 15px rgba(0, 0, 0, 0.15);
+      --box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
 
-    /* Fade-In Animation */
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: scale(0.98);
-      }
-      to {
-        opacity: 1;
-        transform: scale(1);
-      }
-    }
-
-    /* Base Styles */
     * {
       box-sizing: border-box;
       margin: 0;
@@ -44,35 +28,32 @@
     }
 
     body {
-      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-			display:flex;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
       background-color: var(--background-color);
       color: var(--text-color);
       height: 100vh;
       overflow: hidden;
     }
 
-    /* Overall Layout */
     .layout {
       display: flex;
       width: 100%;
       height: 100vh;
     }
 
-    /* Sidebar Styles */
+    /* Sidebar */
     .sidebar {
-      width: 270px;
+      width: 250px;
       background: var(--sidebar-bg);
       color: var(--text-light);
       display: flex;
       flex-direction: column;
       transition: width var(--transition-speed);
       overflow-y: auto;
-      overflow-x: hidden;
     }
 
     .sidebar-header {
-      padding: 20px;
+      padding: 15px;
       display: flex;
       align-items: center;
       gap: 10px;
@@ -80,8 +61,8 @@
     }
 
     .sidebar-logo {
-      max-width: 10rem;
-      margin-bottom: 10px;
+      max-width: 100%;
+      height: 40px;
     }
 
     .sidebar-nav {
@@ -90,19 +71,15 @@
       flex-direction: column;
     }
 
-    .sidebar-section {
-      margin-bottom: 5px;
-    }
-
     .sidebar-section-header {
       display: flex;
       align-items: center;
-      font-size: 0.9rem;
+      font-size: 0.8rem;
       text-transform: uppercase;
       letter-spacing: 0.5px;
       color: rgba(255, 255, 255, 0.6);
       font-weight: 600;
-      padding: 15px 20px 5px;
+      padding: 15px 15px 5px;
     }
 
     #fileTree {
@@ -111,11 +88,10 @@
     }
 
     #fileTree li {
-      padding: 10px 20px;
+      padding: 8px 15px;
       cursor: pointer;
       border-left: 3px solid transparent;
-      transition: background var(--transition-speed) ease,
-        border-left var(--transition-speed) ease;
+      transition: background 0.2s ease;
       display: flex;
       align-items: center;
       gap: 8px;
@@ -135,10 +111,10 @@
     .sidebar-nav-item {
       display: flex;
       align-items: center;
-      padding: 12px 20px;
+      padding: 10px 15px;
       color: var(--text-light);
       text-decoration: none;
-      transition: background var(--transition-speed) ease;
+      transition: background 0.2s ease;
       border-left: 3px solid transparent;
       cursor: pointer;
       gap: 10px;
@@ -161,14 +137,14 @@
     }
 
     .sidebar-footer {
-      padding: 15px 20px;
+      padding: 10px 15px;
       border-top: 1px solid rgba(255, 255, 255, 0.1);
       font-size: 0.8rem;
       color: rgba(255, 255, 255, 0.6);
       text-align: center;
     }
 
-    /* Editor & Preview Grid Layout */
+    /* Main Content */
     .content {
       flex: 1;
       display: flex;
@@ -178,25 +154,19 @@
 
     .editor-container {
       flex: 1;
-      display: flex;
+      display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 20px;
-      padding: 20px;
-      background: white;
-      box-shadow: var(--box-shadow);
-      border-radius: var(--border-radius);
-      margin: 20px;
-      animation: fadeIn 0.4s ease-out;
+      padding: 15px;
       overflow: hidden;
     }
 
-    /* Left Side: Editor Pane */
+    /* Editor Pane */
     .editor-pane {
       display: flex;
       flex-direction: column;
       gap: 15px;
       overflow-y: auto;
-      padding-right: 10px;
     }
 
     .editor-header {
@@ -206,8 +176,8 @@
       margin-bottom: 10px;
     }
 
-    .editor-pane h1 {
-      font-size: 1.5rem;
+    .editor-header h1 {
+      font-size: 1.3rem;
       font-weight: 600;
     }
 
@@ -240,8 +210,7 @@
       border: 1px solid #ddd;
       border-radius: var(--border-radius);
       resize: none;
-      transition: border var(--transition-speed) ease,
-        box-shadow var(--transition-speed) ease;
+      transition: border 0.2s ease;
     }
 
     textarea#editor:focus {
@@ -250,7 +219,7 @@
       box-shadow: 0 0 0 2px rgba(74, 108, 247, 0.2);
     }
 
-    /* Action Buttons */
+    /* Buttons */
     .button-group {
       display: flex;
       gap: 10px;
@@ -258,31 +227,22 @@
     }
 
     button {
-      position: relative;
-      overflow: hidden;
       background: var(--primary-color);
       color: white;
       border: none;
-      padding: 10px 15px;
+      padding: 8px 12px;
       border-radius: var(--border-radius);
       cursor: pointer;
       font-weight: 500;
       display: flex;
       align-items: center;
       gap: 5px;
-      transition: background-color var(--transition-speed) ease,
-        transform var(--transition-speed) ease,
-        box-shadow var(--transition-speed) ease;
+      transition: background-color 0.2s ease;
       box-shadow: var(--box-shadow);
     }
 
     button:hover {
       background-color: var(--primary-hover);
-      box-shadow: var(--box-shadow-hover);
-    }
-
-    button:active {
-      transform: translateY(1px);
     }
 
     button i {
@@ -291,10 +251,6 @@
 
     button.secondary {
       background-color: var(--secondary-color);
-    }
-
-    button.secondary:hover {
-      background-color: #5a6268;
     }
 
     button.outline {
@@ -307,7 +263,23 @@
       background-color: rgba(74, 108, 247, 0.1);
     }
 
-    /* Input Field Styles */
+    /* Extension Settings */
+    .settings-section {
+      background: white;
+      border-radius: var(--border-radius);
+      padding: 15px;
+      margin-bottom: 15px;
+      box-shadow: var(--box-shadow);
+    }
+
+    .settings-section h3 {
+      font-size: 1rem;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
     .input-group {
       margin-bottom: 15px;
     }
@@ -320,20 +292,20 @@
     }
 
     input[type="file"],
-    input[type="text"] {
+    input[type="text"],
+    input[type="number"],
+    select {
       width: 100%;
-      padding: 10px;
+      padding: 8px;
       border: 1px solid #ddd;
       border-radius: var(--border-radius);
-      transition: border var(--transition-speed) ease,
-        box-shadow var(--transition-speed) ease;
+      transition: border 0.2s ease;
     }
 
-    input[type="file"]:focus,
-    input[type="text"]:focus {
+    input:focus,
+    select:focus {
       outline: none;
       border-color: var(--primary-color);
-      box-shadow: 0 0 0 2px rgba(74, 108, 247, 0.2);
     }
 
     /* Collapsible Section */
@@ -341,7 +313,7 @@
       display: flex;
       align-items: center;
       gap: 8px;
-      font-size: 1.1rem;
+      font-size: 1rem;
       font-weight: 500;
       margin-bottom: 10px;
       cursor: pointer;
@@ -350,7 +322,7 @@
     }
 
     .section-title i {
-      transition: transform var(--transition-speed) ease;
+      transition: transform 0.2s ease;
     }
 
     .section-title.collapsed i {
@@ -359,7 +331,7 @@
 
     .section-content {
       overflow: hidden;
-      transition: max-height var(--transition-speed) ease;
+      transition: max-height 0.2s ease;
       max-height: 1000px;
     }
 
@@ -372,23 +344,15 @@
       display: none;
       flex-direction: column;
       height: 100%;
-      animation: fadeIn 0.3s ease-out;
     }
 
     .tab-container.active {
       display: flex;
     }
 
-    /* SEO Analysis Section */
-    #seo-analysis-section {
-      padding: 15px;
-      display: none;
-    }
-
-    /* Right Side: Preview Pane */
+    /* Preview Pane */
     .preview-pane {
       border: 1px solid #ddd;
-			min-height:600px;
       border-radius: var(--border-radius);
       overflow: hidden;
       background: #fff;
@@ -400,7 +364,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 10px 15px;
+      padding: 8px 12px;
       background: #f5f5f5;
       border-bottom: 1px solid #ddd;
     }
@@ -422,9 +386,9 @@
       border: none;
     }
 
-    /* Analysis Tab */
+    /* Analysis Content */
     .analysis-content {
-      padding: 20px;
+      padding: 15px;
       height: 100%;
       overflow-y: auto;
     }
@@ -438,7 +402,7 @@
     }
 
     .analysis-card h3 {
-      font-size: 1.1rem;
+      font-size: 1rem;
       margin-bottom: 10px;
       display: flex;
       align-items: center;
@@ -494,7 +458,6 @@
     @media (max-width: 1000px) {
       .editor-container {
         grid-template-columns: 1fr;
-        grid-template-rows: 1fr 1fr;
       }
     }
 
@@ -506,11 +469,7 @@
       .sidebar {
         width: 100%;
         height: auto;
-        max-height: 250px;
-      }
-
-      .editor-container {
-        margin: 10px;
+        max-height: 200px;
       }
     }
   </style>
@@ -521,16 +480,22 @@
     <!-- Sidebar with File List -->
     <aside class="sidebar">
       <div class="sidebar-header">
-        <img src="https://cdn.prod.website-files.com/65db95957d65c02ae759f762/66fca6720ecaf4e682af0a99_blue%20logo%20new.avif" alt="Logo" class="sidebar-logo">
+        <i class="fas fa-puzzle-piece fa-lg"></i>
+        <span>Extension Builder</span>
       </div>
       <div class="sidebar-nav">
         <div class="sidebar-section">
           <div class="sidebar-section-header">
             <i class="fas fa-folder-open"></i>
-            <span>PROJECT FILES</span>
+            <span>FILES</span>
           </div>
-          <ul id="fileTree"></ul>
-          <div class="sidebar-nav-item" onclick="addNewFile()">
+          <ul id="fileTree">
+            <li class="active"><i class="fas fa-file-code"></i> manifest.json</li>
+            <li><i class="fas fa-file-code"></i> popup.html</li>
+            <li><i class="fas fa-file-code"></i> popup.js</li>
+            <li><i class="fas fa-file-code"></i> background.js</li>
+          </ul>
+          <div class="sidebar-nav-item" id="addNewFile">
             <i class="fas fa-plus"></i>
             <span>Add New File</span>
           </div>
@@ -541,22 +506,22 @@
             <i class="fas fa-tools"></i>
             <span>TOOLS</span>
           </div>
-          <div class="sidebar-nav-item active" onclick="showTab('editor')">
+          <div class="sidebar-nav-item active" id="editorTab">
             <i class="fas fa-code"></i>
             <span>Editor</span>
           </div>
-          <div class="sidebar-nav-item" onclick="showTab('analysis')">
+          <div class="sidebar-nav-item" id="analysisTab">
             <i class="fas fa-chart-bar"></i>
             <span>Analysis</span>
           </div>
-          <div class="sidebar-nav-item" onclick="showTab('settings')">
+          <div class="sidebar-nav-item" id="settingsTab">
             <i class="fas fa-cog"></i>
             <span>Settings</span>
           </div>
         </div>
       </div>
       <div class="sidebar-footer">
-        Chrome Extension Builder v1.0
+        v1.0
       </div>
     </aside>
 
@@ -572,57 +537,49 @@
             </div>
             <div class="file-info">
               <i class="fas fa-file-code"></i>
-              <span id="fileLabel">Select a file to start editing</span>
+              <span id="fileLabel">manifest.json</span>
             </div>
             <div class="editor-wrapper">
-              <textarea id="editor" placeholder="Select a file from the sidebar to start editing..."></textarea>
+              <textarea id="editor">{
+  "manifest_version": 3,
+  "name": "My Extension",
+  "version": "1.0",
+  "description": "A simple Chrome extension",
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icon16.png",
+      "48": "icon48.png",
+      "128": "icon128.png"
+    }
+  },
+  "permissions": ["storage"],
+  "background": {
+    "service_worker": "background.js"
+  }
+}</textarea>
             </div>
             <div class="button-group">
-              <button onclick="updatePreview()">
+              <button id="updatePreview">
                 <i class="fas fa-sync-alt"></i> Update Preview
               </button>
-              <button onclick="saveCurrentFile()">
+              <button id="saveFile">
                 <i class="fas fa-save"></i> Save
               </button>
-              <button onclick="downloadExtension()" class="outline">
+              <button id="downloadExt" class="outline">
                 <i class="fas fa-download"></i> Download Extension
               </button>
             </div>
-<button id="analyze-seo">Analyze SEO</button>
-					</div>
-					<div>
-            <!-- Additional Controls -->
+
+            <!-- Extension Assets Section -->
             <div class="section">
-              <div class="section-title" onclick="toggleSection(this)">
+              <div class="section-title" id="assetsSection">
                 <i class="fas fa-chevron-down"></i> Extension Assets
               </div>
               <div class="section-content">
                 <div class="input-group">
-                  <label for="iconUpload">Upload Icon (PNG, 128x128 recommended):</label>
-                  <input type="file" id="iconUpload" accept="image/png, image/jpeg" />
-                </div>
-                <div class="input-group">
-                  <label for="bgUpload">Upload Background Image:</label>
-                  <input type="file" id="bgUpload" accept="image/png, image/jpeg" />
-                </div>
-              </div>
-            </div>
-
-            <div class="section">
-              <div class="section-title" onclick="toggleSection(this)">
-                <i class="fas fa-chevron-down"></i> API Integration
-              </div>
-              <div class="section-content">
-                <div class="input-group">
-                  <label for="apiEndpoint">API Endpoint URL:</label>
-                  <input type="text" id="apiEndpoint" placeholder="Enter API URL" />
-                </div>
-                <button onclick="fetchAPIData()">
-                  <i class="fas fa-cloud-download-alt"></i> Fetch Data
-                </button>
-                <div class="input-group">
-                  <label>API Response:</label>
-                  <pre id="apiData" style="background:#f5f5f5;padding:10px;border-radius:4px;max-height:150px;overflow:auto;">No data fetched yet</pre>
+                  <label for="iconUpload">Icon (PNG, 128x128):</label>
+                  <input type="file" id="iconUpload" accept="image/png" />
                 </div>
               </div>
             </div>
@@ -632,11 +589,9 @@
           <div class="preview-pane">
             <div class="preview-header">
               <h2>Live Preview</h2>
-              <div class="button-group">
-                <button class="secondary" onclick="refreshPreview()">
-                  <i class="fas fa-sync"></i>
-                </button>
-              </div>
+              <button class="secondary" id="refreshPreview">
+                <i class="fas fa-sync"></i>
+              </button>
             </div>
             <div class="preview-content">
               <iframe id="preview"></iframe>
@@ -650,7 +605,7 @@
         <div class="editor-container">
           <div class="analysis-content">
             <h1>Extension Analysis</h1>
-            <p class="section-description">Analyze your extension for best practices, performance, and manifest issues.</p>
+            <p>Check your extension for best practices and issues.</p>
             
             <div class="analysis-card">
               <h3><i class="fas fa-check-circle"></i> Manifest Validation</h3>
@@ -665,51 +620,31 @@
                 <div class="seo-item warning">
                   <i class="fas fa-exclamation-triangle"></i>
                   <div class="seo-item-content">
-                    <div class="seo-item-title">Missing Recommended Fields</div>
-                    <div class="seo-item-description">Your manifest is missing recommended fields: description, version</div>
+                    <div class="seo-item-title">Recommended Fields</div>
+                    <div class="seo-item-description">Add author and homepage_url to your manifest.</div>
                   </div>
                 </div>
               </div>
             </div>
             
             <div class="analysis-card">
-              <h3><i class="fas fa-tachometer-alt"></i> Performance Analysis</h3>
-              <div id="performance-analysis">
-                <div class="seo-item good">
-                  <i class="fas fa-check-circle"></i>
-                  <div class="seo-item-content">
-                    <div class="seo-item-title">JavaScript Size</div>
-                    <div class="seo-item-description">Total JavaScript size: 1.2KB (Good)</div>
-                  </div>
-                </div>
-                <div class="seo-item good">
-                  <i class="fas fa-check-circle"></i>
-                  <div class="seo-item-content">
-                    <div class="seo-item-title">CSS Size</div>
-                    <div class="seo-item-description">Total CSS size: 0.5KB (Good)</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="analysis-card">
-              <h3><i class="fas fa-shield-alt"></i> Security Analysis</h3>
+              <h3><i class="fas fa-shield-alt"></i> Security Check</h3>
               <div id="security-analysis">
                 <div class="seo-item warning">
                   <i class="fas fa-exclamation-triangle"></i>
                   <div class="seo-item-content">
                     <div class="seo-item-title">Content Security Policy</div>
-                    <div class="seo-item-description">No Content Security Policy defined. Consider adding one for better security.</div>
+                    <div class="seo-item-description">Add a Content Security Policy for better security.</div>
                   </div>
                 </div>
               </div>
             </div>
             
             <div class="button-group">
-              <button onclick="runAnalysis()">
+              <button id="runAnalysis">
                 <i class="fas fa-sync-alt"></i> Run Analysis
               </button>
-              <button class="outline" onclick="exportAnalysisReport()">
+              <button id="exportReport" class="outline">
                 <i class="fas fa-file-export"></i> Export Report
               </button>
             </div>
@@ -721,13 +656,13 @@
       <div id="settings-tab" class="tab-container">
         <div class="editor-container">
           <div class="analysis-content">
-            <h1>Extension Settings</h1>
-            <p class="section-description">Configure your extension builder settings.</p>
+            <h1>Settings</h1>
+            <p>Configure your extension builder preferences.</p>
             
-            <div class="analysis-card">
-              <h3><i class="fas fa-sliders-h"></i> Builder Settings</h3>
+            <div class="settings-section">
+              <h3><i class="fas fa-sliders-h"></i> Editor Settings</h3>
               <div class="input-group">
-                <label for="autosave">Auto-save interval (seconds):</label>
+                <label for="autosave">Auto-save (seconds):</label>
                 <input type="number" id="autosave" value="30" min="0" max="300" />
               </div>
               <div class="input-group">
@@ -735,15 +670,14 @@
                 <select id="theme">
                   <option value="light">Light</option>
                   <option value="dark">Dark</option>
-                  <option value="system">System Default</option>
                 </select>
               </div>
             </div>
             
-            <div class="analysis-card">
+            <div class="settings-section">
               <h3><i class="fas fa-puzzle-piece"></i> Extension Defaults</h3>
               <div class="input-group">
-                <label for="default-name">Default Extension Name:</label>
+                <label for="default-name">Default Name:</label>
                 <input type="text" id="default-name" value="My Chrome Extension" />
               </div>
               <div class="input-group">
@@ -753,10 +687,10 @@
             </div>
             
             <div class="button-group">
-              <button onclick="saveSettings()">
+              <button id="saveSettings">
                 <i class="fas fa-save"></i> Save Settings
               </button>
-              <button class="outline" onclick="resetSettings()">
+              <button id="resetSettings" class="outline">
                 <i class="fas fa-undo"></i> Reset to Defaults
               </button>
             </div>
@@ -765,157 +699,184 @@
       </div>
     </div>
   </div>
-	</div>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jslint/0.1.1/jslint.min.js" integrity="sha512-LlfK46fE1O1c02H/Vb1hF+l1ogvHnf3j0W+8ZTKnq6zv9Tx6z9pcWwRQtHj5M+Mcr9xYYp6awp09/4iFwQ2pw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script>
-  // Core functionality for the extension builder
-  document.addEventListener('DOMContentLoaded', function() {
-    // Initialize the file tree with some default files
-    initializeFileTree();
-    
-    // Set up event handlers
-    document.getElementById('analyze-seo').addEventListener('click', analyzeSEO);
-  });
-  
-  // File management functions
-  function initializeFileTree() {
-    const fileTree = document.getElementById('fileTree');
-    const defaultFiles = [
-      { name: 'manifest.json', type: 'json' },
-      { name: 'popup.html', type: 'html' },
-      { name: 'popup.js', type: 'js' },
-      { name: 'styles.css', type: 'css' }
-    ];
-    
-    defaultFiles.forEach(file => {
-      const li = document.createElement('li');
-      li.innerHTML = `<i class="fas fa-file-${file.type}"></i> ${file.name}`;
-      li.onclick = () => loadFile(file.name);
-      fileTree.appendChild(li);
-    });
-  }
-  
-  function loadFile(fileName) {
-    document.getElementById('fileLabel').textContent = fileName;
-    // Load file content (would connect to storage in real implementation)
-    document.getElementById('editor').value = `// Sample content for ${fileName}`;
-  }
-  
-  function saveCurrentFile() {
-    const fileName = document.getElementById('fileLabel').textContent;
-    const content = document.getElementById('editor').value;
-    // Save logic would go here
-    alert(`Saved ${fileName}`);
-  }
-  
-  function addNewFile() {
-    const fileName = prompt('Enter file name:');
-    if (fileName) {
-      const fileType = fileName.split('.').pop();
-      const li = document.createElement('li');
-      li.innerHTML = `<i class="fas fa-file-${fileType}"></i> ${fileName}`;
-      li.onclick = () => loadFile(fileName);
-      document.getElementById('fileTree').appendChild(li);
-    }
-  }
-  
-  // UI functions
-  function showTab(tabName) {
-    // Hide all tabs
-    document.querySelectorAll('.tab-container').forEach(tab => {
-      tab.classList.remove('active');
+
+  <script>
+    // Basic functionality for the UI
+    document.addEventListener('DOMContentLoaded', function() {
+      // Tab switching
+      document.getElementById('editorTab').addEventListener('click', () => showTab('editor'));
+      document.getElementById('analysisTab').addEventListener('click', () => showTab('analysis'));
+      document.getElementById('settingsTab').addEventListener('click', () => showTab('settings'));
+      
+      // Toggle sections
+      document.getElementById('assetsSection').addEventListener('click', toggleSection);
+      
+      // File tree functionality
+      const fileTreeItems = document.querySelectorAll('#fileTree li');
+      fileTreeItems.forEach(item => {
+        item.addEventListener('click', function() {
+          fileTreeItems.forEach(i => i.classList.remove('active'));
+          this.classList.add('active');
+          
+          // Update file label and editor content (simplified for demo)
+          const fileName = this.textContent.trim();
+          document.getElementById('fileLabel').textContent = fileName;
+          
+          // In a real app, you would load the actual file content
+          if (fileName.includes('manifest.json')) {
+            document.getElementById('editor').value = JSON.stringify({
+              "manifest_version": 3,
+              "name": "My Extension",
+              "version": "1.0",
+              "description": "A simple Chrome extension"
+            }, null, 2);
+          } else if (fileName.includes('popup.html')) {
+            document.getElementById('editor').value = '<!DOCTYPE html>\n<html>\n<head>\n  <title>My Extension</title>\n</head>\n<body>\n  <h1>Hello Extension!</h1>\n</body>\n</html>';
+          } else {
+            document.getElementById('editor').value = '// ' + fileName;
+          }
+        });
+      });
+      
+      // Preview functionality
+      document.getElementById('updatePreview').addEventListener('click', updatePreview);
+      document.getElementById('refreshPreview').addEventListener('click', updatePreview);
+      
+      // Initialize preview
+      updatePreview();
     });
     
     // Show selected tab
-    document.getElementById(`${tabName}-tab`).classList.add('active');
-    
-    // Update sidebar active state
-    document.querySelectorAll('.sidebar-nav-item').forEach(item => {
-      item.classList.remove('active');
-    });
-    
-    // Find the clicked item and make it active
-    const navItems = document.querySelectorAll('.sidebar-nav-item');
-    for (let item of navItems) {
-      if (item.textContent.trim().toLowerCase().includes(tabName)) {
-        item.classList.add('active');
-        break;
+    function showTab(tabName) {
+      // Hide all tabs
+      document.querySelectorAll('.tab-container').forEach(tab => {
+        tab.classList.remove('active');
+      });
+      
+      // Show selected tab
+      document.getElementById(tabName + '-tab').classList.add('active');
+      
+      // Update nav
+      document.querySelectorAll('.sidebar-nav-item').forEach(item => {
+        item.classList.remove('active');
+      });
+      
+      // Mark active nav item
+      if (tabName === 'editor') {
+        document.getElementById('editorTab').classList.add('active');
+      } else if (tabName === 'analysis') {
+        document.getElementById('analysisTab').classList.add('active');
+      } else if (tabName === 'settings') {
+        document.getElementById('settingsTab').classList.add('active');
       }
     }
-  }
-  
-  function toggleSection(element) {
-    const content = element.nextElementSibling;
-    element.classList.toggle('collapsed');
-    content.classList.toggle('collapsed');
-  }
-  
-  function updatePreview() {
-    const editor = document.getElementById('editor');
-    const preview = document.getElementById('preview');
-    const content = editor.value;
     
-    const iframe = document.getElementById('preview');
-    const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-    iframeDoc.open();
-    iframeDoc.write(content);
-    iframeDoc.close();
-  }
-  
-  function refreshPreview() {
-    updatePreview();
-  }
-  
-  function downloadExtension() {
-    alert('Extension package generated! Download started.');
-    // Actual download implementation would go here
-  }
-  
-  function analyzeSEO() {
-    alert('SEO analysis complete!');
-    // Actual analysis implementation would go here
-  }
-  
-  function runAnalysis() {
-    // Simulate analysis running
-    alert('Analysis complete!');
-  }
-  
-  function exportAnalysisReport() {
-    alert('Analysis report exported!');
-  }
-  
-  function saveSettings() {
-    alert('Settings saved!');
-  }
-  
-  function resetSettings() {
-    document.getElementById('autosave').value = 30;
-    document.getElementById('theme').value = 'light';
-    document.getElementById('default-name').value = 'My Chrome Extension';
-    document.getElementById('default-version').value = '1.0.0';
-    alert('Settings reset to defaults!');
-  }
-  
-  function fetchAPIData() {
-    const endpoint = document.getElementById('apiEndpoint').value;
-    if (!endpoint) {
-      alert('Please enter an API endpoint URL');
-      return;
+    // Toggle section visibility
+    function toggleSection() {
+      this.classList.toggle('collapsed');
+      const content = this.nextElementSibling;
+      if (this.classList.contains('collapsed')) {
+        content.classList.add('collapsed');
+      } else {
+        content.classList.remove('collapsed');
+      }
     }
     
-    document.getElementById('apiData').textContent = 'Loading...';
-    
-    // Simulate API fetch
-    setTimeout(() => {
-      document.getElementById('apiData').textContent = JSON.stringify({
-        status: 'success',
-        data: {
-          message: 'API integration example'
+    // Update preview pane
+    function updatePreview() {
+      const fileName = document.getElementById('fileLabel').textContent;
+      const content = document.getElementById('editor').value;
+      
+      if (fileName.includes('.html')) {
+        const iframe = document.getElementById('preview');
+        const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+        iframeDoc.open();
+        iframeDoc.write(content);
+        iframeDoc.close();
+      } else if (fileName.includes('.json')) {
+        try {
+          const jsonObj = JSON.parse(content);
+          const iframe = document.getElementById('preview');
+          const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+          iframeDoc.open();
+          iframeDoc.write(`
+            <html>
+            <head>
+              <style>
+                body { font-family: sans-serif; padding: 20px; }
+                .json-key { color: #0077aa; }
+                .json-value { color: #669900; }
+                .json-string { color: #aa5500; }
+              </style>
+            </head>
+            <body>
+              <h2>Manifest Preview</h2>
+              <pre>${formatJSON(content)}</pre>
+            </body>
+            </html>
+          `);
+          iframeDoc.close();
+        } catch (e) {
+          showError("Invalid JSON: " + e.message);
         }
-      }, null, 2);
-    }, 1000);
-  }
-</script>
+      } else {
+        const iframe = document.getElementById('preview');
+        const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+        iframeDoc.open();
+        iframeDoc.write(`
+          <html>
+          <head>
+            <style>
+              body { font-family: monospace; padding: 20px; white-space: pre; }
+            </style>
+          </head>
+          <body>${content.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</body>
+          </html>
+        `);
+        iframeDoc.close();
+      }
+    }
+    
+    // Format JSON for display
+    function formatJSON(json) {
+      return json
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function (match) {
+          let cls = 'json-value';
+          if (/^"/.test(match)) {
+            if (/:$/.test(match)) {
+              cls = 'json-key';
+            } else {
+              cls = 'json-string';
+            }
+          }
+          return '<span class="' + cls + '">' + match + '</span>';
+        });
+    }
+    
+    // Show error
+    function showError(message) {
+      const iframe = document.getElementById('preview');
+      const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+      iframeDoc.open();
+      iframeDoc.write(`
+        <html>
+        <head>
+          <style>
+            body { font-family: sans-serif; padding: 20px; }
+            .error { color: #dc3545; }
+          </style>
+        </head>
+        <body>
+          <h2 class="error">Error</h2>
+          <p class="error">${message}</p>
+        </body>
+        </html>
+      `);
+      iframeDoc.close();
+    }
+  </script>
 </body>
 </html>
